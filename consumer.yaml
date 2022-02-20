@@ -1,0 +1,65 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: oci-apprise-consumer
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+       metadata:
+         labels:
+           app: oci-apprise-consumer
+       spec:
+         restartPolicy: OnFailure
+         containers:
+          - name: oci-apprise-consumer
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer:v1.0
+            resources:
+              limits:
+                memory: "2048Mi"
+              requests:
+                memory: "2048Mi"
+
+            securityContext:
+              # Non-root container: UID of the application user in our container.
+              # Cannot be root (i.e. UID=0), which is the default. Ideally, we'd
+              # specify the username here. Unfortunately, Kubernetes currently
+              # requires UIDs.
+            env:
+            - name: AWS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-aws-creds
+                  key: service_user_secret_key
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-aws-creds
+                  key: service_user_key_id
+            - name: OCI_STREAM_OCID
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-oci-creds
+                  key: oci_stream_ocid
+            - name: OCI_SVC_USER_OCID
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-oci-creds
+                  key: oci_svc_user_ocid
+            - name: OCI_SVC_USER_FINGERPRINT
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-oci-creds
+                  key: oci_svc_user_fingerprint
+            - name: OCI_SVC_USER_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-oci-creds
+                  key: oci_svc_user_public_key
+            - name: OCI_SVC_USER_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: pmobi-oci-creds
+                  key: oci_svc_user_private_key
+
