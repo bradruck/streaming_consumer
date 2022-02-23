@@ -176,6 +176,7 @@ class OciConsumerTools:
             value = b64decode(message.value.encode()).decode(errors='ignore')
             self.data_dict[key] = value
             new_message_list.append({key: value})
+        print("Final message-batch offset value: {}\n".format(get_response.data[-1].offset))
 
         return new_message_list
 

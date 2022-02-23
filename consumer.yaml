@@ -30,13 +30,13 @@ spec:
             - name: AWS_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: pmobi-aws-creds
-                  key: service_user_secret_key
+                  name: pmobi-s3-creds
+                  key: secret
             - name: AWS_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: pmobi-aws-creds
-                  key: service_user_key_id
+                  name: pmobi-s3-creds
+                  key: access-key
             - name: OCI_STREAM_OCID
               valueFrom:
                 secretKeyRef:

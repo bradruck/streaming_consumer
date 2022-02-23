@@ -63,7 +63,6 @@ class S3Tools:
         self.s3_session = self._create_s3_session()
         self.s3_resource = self._create_s3_resource()
         self.s3_client = self._create_s3_client()
-        #self.s3_client = boto3.session.Session(profile_name='prd')
 
     def get_current_data_files(self):
         """Downloads all new data files"""
@@ -84,10 +83,7 @@ class S3Tools:
 
     def upload_csv_file(self, file_name):
         """Uploads local csv file to S3 location"""
-        s3_resource = self.s3_client.resource('s3')
-        s3_resource.Bucket(self.config.get('s3', 's3_bucket')).upload_file('tmp/{}'.format(file_name),
-                                                                           '{}/{}'.format(self.config.get('s3', 's3_prefix'),
-                                                                                          file_name.split('/')[-1]))
+        self._upload_file(self.config.get('s3', 's3_bucket'), self.config.get('s3', 's3_prefix'), 'tmp', file_name)
 
     @staticmethod
     def _create_folder(path):
