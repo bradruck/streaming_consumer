@@ -14,7 +14,7 @@ spec:
          restartPolicy: OnFailure
          containers:
           - name: oci-apprise-consumer
-            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer:v1.0
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer:v1.5
             resources:
               limits:
                 memory: "2048Mi"

@@ -70,6 +70,9 @@ class CreateCsvFile:
                     flat_dict = flatdict.FlatterDict(v)
                     # modify nested-key values
                     flat_dict = {k.replace(':', '_'): v[0] for k, v[0] in flat_dict.items()}
+                    flat_dict = {k.replace('-', '_'): v[0] for k, v[0] in flat_dict.items()}
+                    flat_dict = {k.replace('–', '_'): v[0] for k, v[0] in flat_dict.items()}
+                    flat_dict = {k.replace('—', '_'): v[0] for k, v[0] in flat_dict.items()}
                     # add the offset key:value pair to the message dict
                     flat_dict['oci_stream_offset'] = offset
                     flat_data.append(flat_dict)
