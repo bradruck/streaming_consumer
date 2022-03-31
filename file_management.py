@@ -104,9 +104,11 @@ class CreateCsvFile:
         except Exception as e:
             print('Problem creating csv file', e)
         else:
-            print('Uploading csv file to S3 ....')
             s3_upload = S3Tools(self.config)
+            print('Uploading csv file to S3 ....')
             s3_upload.upload_csv_file(self.csv_file_name)
+            print('Uploading json file to S3 ....')
+            s3_upload.upload_json_file(self.json_file_name.split('/')[-1])
             # Delete local Json and Csv file
             os.remove(self.json_file_name)
             os.remove('{}/{}'.format(folder_path, self.csv_file_name))
