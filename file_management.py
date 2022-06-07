@@ -64,6 +64,7 @@ class CreateCsvFile:
                     # replace stream values with valid python values
                     v = v.replace('false', 'False')
                     v = v.replace('true', 'True')
+                    v = v.replace('null', '""')
                     # convert string-dict to dictionary
                     v = literal_eval(v)
                     # convert nested dictionary to flattened dictionary
@@ -91,11 +92,20 @@ class CreateCsvFile:
 
     def create_csv(self, folder_path):
         """Creates a local csv file from the flattened dict, then uploads to S3 location, deletes local Json and csv"""
+        s3_upload = S3Tools(self.config)
+
+        # commented out when not required
+        '''try:
+            print('Uploading json file to S3 ....')
+            s3_upload.upload_json_file(self.json_file_name.split('/')[-1])
+        except Exception as e:
+            print('Problem uploading json file', e)'''
 
         print('Flattening Json ....')
         flattened_data = self._flatten_json()
         print('Creating csv file ....')
         csv_columns = self._find_column_headers(flattened_data)
+
         try:
             with open('{}/{}'.format(folder_path, self.csv_file_name), 'w') as csv_file:
                 writer = DictWriter(csv_file, fieldnames=csv_columns)
@@ -104,11 +114,9 @@ class CreateCsvFile:
         except Exception as e:
             print('Problem creating csv file', e)
         else:
-            s3_upload = S3Tools(self.config)
             print('Uploading csv file to S3 ....')
             s3_upload.upload_csv_file(self.csv_file_name)
-            print('Uploading json file to S3 ....')
-            s3_upload.upload_json_file(self.json_file_name.split('/')[-1])
-            # Delete local Json and Csv file
+            # Delete local Json file
             os.remove(self.json_file_name)
+            # Delete local Csv file
             os.remove('{}/{}'.format(folder_path, self.csv_file_name))

@@ -1,20 +1,20 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: oci-apprise-consumer
+  name: oci-apprise-consumer-prod
 spec:
-  schedule: "*/15 * * * *"
+  schedule: "0/10 * * * *"
   jobTemplate:
     spec:
       template:
        metadata:
          labels:
-           app: oci-apprise-consumer
+           app: oci-apprise-consumer-prod
        spec:
          restartPolicy: OnFailure
          containers:
-          - name: oci-apprise-consumer
-            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer:v1.7
+          - name: oci-apprise-consumer-prod
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.1
             resources:
               limits:
                 memory: "2048Mi"
@@ -41,7 +41,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: pmobi-oci-creds
-                  key: oci_stream_ocid
+                  key: oci_stream_ocid_prod
             - name: OCI_SVC_USER_OCID
               valueFrom:
                 secretKeyRef:
