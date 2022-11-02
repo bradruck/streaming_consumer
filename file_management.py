@@ -64,7 +64,7 @@ class CreateCsvFile:
                     # replace stream values with valid python values
                     v = v.replace('false', 'False')
                     v = v.replace('true', 'True')
-                    v = v.replace('null', '""')
+                    v = v.replace('null', '')
                     # convert string-dict to dictionary
                     v = literal_eval(v)
                     # convert nested dictionary to flattened dictionary

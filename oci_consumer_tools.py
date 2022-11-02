@@ -146,7 +146,7 @@ class OciConsumerTools:
         message_cursor = initial_cursor
 
         while True:
-            get_response = client.get_messages(stream_id, message_cursor, limit=500)
+            get_response = client.get_messages(stream_id, message_cursor)
             # No messages to process then return
             if not get_response.data:
                 print('Finish looping through all the batches\n')
