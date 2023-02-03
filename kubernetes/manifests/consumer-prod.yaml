@@ -72,6 +72,5 @@ spec:
                   key: services_user_private_key
 
          volumes:
-           - name: tmp
-             emptyDir:
-               sizeLimit: 500Mi
+           - emptyDir: {}
+             name: tmp
