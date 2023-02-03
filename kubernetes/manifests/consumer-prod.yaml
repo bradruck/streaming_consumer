@@ -15,6 +15,9 @@ spec:
          containers:
           - name: oci-apprise-consumer-prod
             image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.4
+            volumeMounts:
+              - mountPath: /tmp
+                name: temp-volume
             imagePullPolicy: Always
             resources:
               limits:
@@ -23,6 +26,7 @@ spec:
               requests:
                 cpu: 250m
                 memory: "2Gi"
+
 
             securityContext:
               runAsUser: 100
@@ -67,3 +71,7 @@ spec:
                   name: analyplat-creds-main
                   key: services_user_private_key
 
+         volumes:
+           - name: temp-volume
+             emptyDir:
+               sizeLimit: 500Mi
