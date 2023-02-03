@@ -45,25 +45,25 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: analyplat-creds-main
-                  key: oci_stream_ocid_prod
+                  key: oci_streamocid
             - name: OCI_SVC_USER_OCID
               valueFrom:
                 secretKeyRef:
                   name: analyplat-creds-main
-                  key: oci_svc_user_ocid
+                  key: user_ocid
             - name: OCI_SVC_USER_FINGERPRINT
               valueFrom:
                 secretKeyRef:
                   name: analyplat-creds-main
-                  key: oci_svc_user_fingerprint
+                  key: services_user_fingerprint
             - name: OCI_SVC_USER_PUBLIC_KEY
               valueFrom:
                 secretKeyRef:
                   name: analyplat-creds-main
-                  key: oci_svc_user_public_key
+                  key: services_user_public_key
             - name: OCI_SVC_USER_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
                   name: analyplat-creds-main
-                  key: oci_svc_user_private_key
+                  key: services_user_private_key
 
