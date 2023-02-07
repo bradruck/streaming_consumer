@@ -17,7 +17,9 @@ spec:
             image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.4
             volumeMounts:
               - mountPath: /tmp
-                name: tmp
+                name: tmp-volume
+              - mountPath: /api_keys
+                name: api_keys-volume
             imagePullPolicy: Always
             resources:
               limits:
@@ -73,4 +75,6 @@ spec:
 
          volumes:
            - emptyDir: {}
-             name: tmp
+             name: tmp-volume
+           - emptyDir: {}
+             name: api_keys-volume
