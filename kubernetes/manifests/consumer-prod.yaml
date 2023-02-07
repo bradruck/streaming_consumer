@@ -14,12 +14,12 @@ spec:
          restartPolicy: OnFailure
          containers:
           - name: oci-apprise-consumer-prod
-            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.4
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.5
             volumeMounts:
               - mountPath: /tmp
                 name: tmp-volume
-              - mountPath: /api_keys
-                name: api_keys-volume
+              - mountPath: /apikeys
+                name: apikeys-volume
             imagePullPolicy: Always
             resources:
               limits:
@@ -77,4 +77,4 @@ spec:
            - emptyDir: {}
              name: tmp-volume
            - emptyDir: {}
-             name: api_keys-volume
+             name: apikeys-volume
