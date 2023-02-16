@@ -83,11 +83,11 @@ class S3Tools:
 
     def upload_csv_file(self, file_name):
         """Uploads local csv file to S3 location"""
-        self._upload_file(self.config.get('s3', 's3_bucket'), self.config.get('s3', 's3_prefix_csv'), 'tmp', file_name)
+        self._upload_file(self.config.get('s3', 's3_bucket'), self.config.get('s3', 's3_prefix_csv'), '/tmp', file_name)
 
     def upload_json_file(self, file_name):
         """Uploads local json file to S3 location"""
-        self._upload_file(self.config.get('s3', 's3_bucket'), self.config.get('s3', 's3_prefix_json'), 'tmp', file_name)
+        self._upload_file(self.config.get('s3', 's3_bucket'), self.config.get('s3', 's3_prefix_json'), '/tmp', file_name)
 
     @staticmethod
     def _create_folder(path):

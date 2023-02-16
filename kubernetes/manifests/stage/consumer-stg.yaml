@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: oci-apprise-consumer-prod
+  name: oci-apprise-consumer-stg
 spec:
   schedule: "5/10 * * * *"
   jobTemplate:
@@ -9,11 +9,12 @@ spec:
       template:
        metadata:
          labels:
-           app: oci-apprise-consumer-prod
+           app: oci-apprise-consumer-stg
+           networking/allow-internet-egress: "true"
        spec:
          restartPolicy: OnFailure
          containers:
-          - name: oci-apprise-consumer-prod
+          - name: oci-apprise-consumer-stg
             image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.5
             volumeMounts:
               - mountPath: /tmp

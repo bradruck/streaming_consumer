@@ -1,0 +1,80 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: oci-apprise-consumer-prod
+spec:
+  schedule: "5/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+       metadata:
+         labels:
+           app: oci-apprise-consumer-prod
+           networking/allow-internet-egress: "true"
+       spec:
+         restartPolicy: OnFailure
+         containers:
+          - name: oci-apprise-consumer-prod
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.5
+            volumeMounts:
+              - mountPath: /tmp
+                name: tmp-volume
+              - mountPath: /apikeys
+                name: apikeys-volume
+            imagePullPolicy: Always
+            resources:
+              limits:
+                cpu: 500m
+                memory: "4Gi"
+              requests:
+                cpu: 250m
+                memory: "2Gi"
+
+            securityContext:
+              runAsUser: 100
+              # Non-root container: UID of the application user in our container.
+              # Cannot be root (i.e. UID=0), which is the default. Ideally, we'd
+              # specify the username here. Unfortunately, Kubernetes currently
+              # requires UIDs.
+            env:
+            - name: AWS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-aws
+                  key: secret
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-aws
+                  key: access-key
+            - name: OCI_STREAM_OCID
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-main
+                  key: oci_streamocid
+            - name: OCI_SVC_USER_OCID
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-main
+                  key: user_ocid
+            - name: OCI_SVC_USER_FINGERPRINT
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-main
+                  key: services_user_fingerprint
+            - name: OCI_SVC_USER_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-main
+                  key: services_user_public_key
+            - name: OCI_SVC_USER_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: analyplat-creds-main
+                  key: services_user_private_key
+
+         volumes:
+           - emptyDir: {}
+             name: tmp-volume
+           - emptyDir: {}
+             name: apikeys-volume

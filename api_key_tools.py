@@ -36,12 +36,12 @@ class ApiKeyTools:
         """Dynamically builds PEM key files for OCI authentication"""
         key_files = [
             {
-                'file_path': 'api_keys',
+                'file_path': '/apikeys',
                 'file_name': 'oci_svc_user_key_public.pem',
                 'config_key': 'oci_svc_user_public_key'
             },
             {
-                'file_path': 'api_keys',
+                'file_path': '/apikeys',
                 'file_name': 'oci_svc_user_key.pem',
                 'config_key': 'oci_svc_user_private_key'
             }
