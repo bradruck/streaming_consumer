@@ -1,0 +1,9 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: oci-apprise-consumer-prod
+  namespace: analyplat
+spec:
+  gateways:
+  # This tells the virtual service to use the gateway resource in your workspace.
+  - analyplat/oci-apprise-consumer-prod
