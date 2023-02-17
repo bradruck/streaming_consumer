@@ -6,17 +6,18 @@ metadata:
 spec:
   egress:
     - to:
-        - ipBlock:
-            cidr: 10.196.130.0/23
-        - ipBlock:
-            cidr: 10.196.132.0/22
-        - ipBlock:
-            cidr: 10.196.136.0/22
-        - ipBlock:
-            cidr: 10.196.140.0/32
-      ports:
-        - protocol: TCP
-          port: 6225
+        - {}
+        #- ipBlock:
+            #cidr: 10.196.130.0/23
+        #- ipBlock:
+            #cidr: 10.196.132.0/22
+        #- ipBlock:
+            #cidr: 10.196.136.0/22
+        #- ipBlock:
+            #cidr: 10.196.140.0/32
+      #ports:
+        #- protocol: TCP
+          #port: 6225
   podSelector:
     matchLabels:
       networking/allow-internet-egress: "true"
