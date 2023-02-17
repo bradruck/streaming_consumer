@@ -5,7 +5,7 @@ metadata:
   namespace: analyplat
 spec:
   egress:
-    - to:
+    #- to:
         - {}
         #- ipBlock:
             #cidr: 10.196.130.0/23
