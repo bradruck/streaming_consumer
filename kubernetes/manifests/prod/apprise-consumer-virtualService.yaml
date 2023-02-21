@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: oci-apprise-consumer-prod
@@ -6,7 +6,4 @@ metadata:
 spec:
   gateways:
   # This tells the virtual service to use the gateway resource in your workspace.
-  - analyplat/oci-apprise-consumer-prod
-  podSelector:
-    matchLabels:
-      networking/allow-internet-egress: "true"
+  - egress-default/default-gateway
