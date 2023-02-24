@@ -4,10 +4,15 @@ metadata:
   name: apprise-consumer-egress-policy
   namespace: analyplat
 spec:
-  egress:
-    - {}
   podSelector:
     matchLabels:
       networking/allow-internet-egress: "true"
   policyTypes:
     - Egress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 10.196.130.4/32
+      ports:
+        - protocol: TCP
+          port: 443
