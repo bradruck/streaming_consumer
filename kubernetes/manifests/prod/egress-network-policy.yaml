@@ -10,9 +10,4 @@ spec:
   policyTypes:
     - Egress
   egress:
-    - to:
-        - ipBlock:
-            cidr: 10.196.130.4/32
-      ports:
-        - protocol: TCP
-          port: 443
+    - {}
