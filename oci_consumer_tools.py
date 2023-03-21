@@ -118,7 +118,7 @@ class OciConsumerTools:
         return message_key
 
     @staticmethod
-    def _get_cursor_by_group(sc, sid, group_name='analyplat_consumer', instance_name='apprise_consumer'):
+    def _get_cursor_by_group(sc, sid, group_name='analyplat_consumer_r120-1', instance_name='apprise_consumer'):
         """Creates a group cursor to consume messages from stream"""
 
         print("\nCreating a cursor for group {}, instance {}".format(group_name, instance_name))

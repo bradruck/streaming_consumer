@@ -15,7 +15,7 @@ spec:
          restartPolicy: OnFailure
          containers:
           - name: oci-apprise-consumer-prod
-            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.5
+            image: containers.oracledatacloud.com/pmo/bi/oci-apprise-consumer-prod:v1.6
             volumeMounts:
               - mountPath: /tmp
                 name: tmp-volume
