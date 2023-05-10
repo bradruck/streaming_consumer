@@ -55,7 +55,7 @@ class OciConsumerTools:
     _process_messages()
         Reads a stream of predetermined amount of messages and returns them as a list
     _process_message_list()
-        Loops through the message list, creates a local json file for each, then converts file to csv and upload to S3
+        Loops through the message list, creates a local json file for each, then converts file to csv and upload to OS
     _create_folder()
         Creates a 'tmp' folder to temporarily hold json and csv files
     _create_json()

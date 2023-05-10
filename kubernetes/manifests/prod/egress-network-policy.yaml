@@ -12,8 +12,94 @@ spec:
     - Ingress
   egress:
     - to:
+        # OCI - Streaming
         - ipBlock:
             cidr: 10.196.130.4/32
+        # OCI - Object Storage
+#        - ipBlock:
+#            cidr: 129.146.0.0/21
+#        - ipBlock:
+#            cidr: 129.146.8.0/22
+#        - ipBlock:
+#            cidr: 129.146.16.0/20
+#        - ipBlock:
+#            cidr: 129.146.32.0/19
+#        - ipBlock:
+#            cidr: 129.146.64.0/18
+#        - ipBlock:
+#            cidr: 129.146.128.0/17
+#        - ipBlock:
+#            cidr: 129.151.0.0/19
+#        - ipBlock:
+#            cidr: 129.153.64.0/18
+#        - ipBlock:
+#            cidr: 129.153.192.0/19
+#        - ipBlock:
+#            cidr: 132.226.24.0/21
+#        - ipBlock:
+#            cidr: 132.226.64.0/18
+#        - ipBlock:
+#            cidr: 132.226.144.0/20
+#        - ipBlock:
+#            cidr: 141.147.192.0/18
+#        - ipBlock:
+#            cidr: 141.148.128.0/18
+#        - ipBlock:
+#            cidr: 144.24.0.0/18
+#        - ipBlock:
+#            cidr: 152.70.128.0/19
+#        - ipBlock:
+#            cidr: 158.101.0.0/18
+#        - ipBlock:
+#            cidr: 193.123.0.0/19
+#        - ipBlock:
+#            cidr: 193.123.192.0/19
+#        - ipBlock:
+#            cidr: 207.135.0.0/22
+#        - ipBlock:
+#            cidr: 207.135.25.0/24
+#        - ipBlock:
+#            cidr: 207.135.26.0/24
+#        - ipBlock:
+#            cidr: 207.135.28.0/24
+#        - ipBlock:
+#            cidr: 129.146.12.128/25
+#        - ipBlock:
+#            cidr: 129.146.13.128/25
+#        - ipBlock:
+#            cidr: 129.146.14.128/25
+#        - ipBlock:
+#            cidr: 129.149.28.0/22
+#        - ipBlock:
+#            cidr: 130.35.0.0/22
+#        - ipBlock:
+#            cidr: 130.35.128.0/22
+#        - ipBlock:
+#            cidr: 134.70.8.0/21
+#        - ipBlock:
+#            cidr: 134.70.16.0/22
+#        - ipBlock:
+#            cidr: 138.1.32.0/21
+#        - ipBlock:
+#            cidr: 138.1.112.0/20
+#        - ipBlock:
+#            cidr: 140.91.4.0/22
+#        - ipBlock:
+#            cidr: 140.91.8.0/23
+#        - ipBlock:
+#            cidr: 147.154.96.0/20
+#        - ipBlock:
+#            cidr: 147.154.112.0/21
+#        - ipBlock:
+#            cidr: 147.154.120.0/22
+#        - ipBlock:
+#            cidr: 192.18.200.0/21
+#        - ipBlock:
+#            cidr: 192.29.96.0/20
+#        - ipBlock:
+#            cidr: 204.216.192.0/20
+#        - ipBlock:
+#            cidr: 207.127.124.0/23
     - ports:
         - port: 443
           protocol: TCP

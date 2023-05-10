@@ -1,7 +1,7 @@
 """"This module orchestrates the running of the application. The purpose of the application:
 1) Generate key files to be used for authenticating the OCI stream client
 2) Consume messages from OCI stream for use in reporting analytics
-3) Create and upload csv file of stream messages to Datalake (S3 location)
+3) Create and upload csv file of stream messages to Datalake (OS location)
 """
 import datetime
 import os

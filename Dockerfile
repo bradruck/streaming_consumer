@@ -12,7 +12,7 @@ ADD config.py /src
 ADD main.py /src
 ADD api_key_tools.py /src
 ADD oci_consumer_tools.py /src
-ADD s3_tools.py /src
+ADD os_tools.py /src
 ADD file_management.py /src
 
 RUN mkdir -p /src/api_keys

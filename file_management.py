@@ -4,7 +4,8 @@ from datetime import datetime
 from csv import DictWriter
 import flatdict
 from ast import literal_eval
-from s3_tools import S3Tools
+#from s3_tools import S3Tools
+from os_tools import OSTools
 
 
 class CreateCsvFile:
@@ -91,8 +92,9 @@ class CreateCsvFile:
         return latest_list
 
     def create_csv(self, folder_path):
-        """Creates a local csv file from the flattened dict, then uploads to S3 location, deletes local Json and csv"""
-        s3_upload = S3Tools(self.config)
+        """Creates a local csv file from the flattened dict, then uploads to OS location, deletes local Json and csv"""
+        #s3_upload = S3Tools(self.config)
+        os_upload = OSTools(self.config)
 
         # commented out when not required
         '''try:
@@ -114,8 +116,10 @@ class CreateCsvFile:
         except Exception as e:
             print('Problem creating csv file', e)
         else:
-            print('Uploading csv file to S3 ....')
-            s3_upload.upload_csv_file(self.csv_file_name)
+            #print('Uploading csv file to S3 ....')
+            print('Uploading csv file to OS ....')
+            #s3_upload.upload_csv_file(self.csv_file_name)
+            os_upload.upload_csv_file(self.csv_file_name)
             # Delete local Json file
             os.remove(self.json_file_name)
             # Delete local Csv file
